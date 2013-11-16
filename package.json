@@ -1,6 +1,6 @@
 {
   "name": "lambda-chop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sweet.js macros for lambdas with currying, bound functions, and placeholders.",
   "repository": {
     "type": "git",
