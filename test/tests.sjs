@@ -37,6 +37,14 @@ describe 'Lambdas' {
     test 'bound'   { b(1, 2) === 41 }
   }
 
+  it 'should allow multiple arg lists' {
+    var a = λ(s, t)(x, y) -> s * t - x * y
+    var b = (λ -> λ(s, t)(x, y) => this.foo - s * t - x* y).call(ctx)
+
+    test 'unbound' { a(3, 5)(2, 4) === 7 }
+    test 'bound'   { b(3, 5)(2, 4) === 19 }
+  }
+
   it 'should allow partials with placeholders' {
     var a = λ[# + #];
 
