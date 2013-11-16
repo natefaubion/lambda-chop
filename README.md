@@ -39,6 +39,9 @@ DB.getResource('foo', λ(err, resp) => {
 var always = λ x y -> x;
 always(42)(12) === 42;
 
+// Mix and match for multiple argument lists
+var nonsense = λ(x, y)(s, t) f -> 42;
+
 // Placeholders using square brackets and `#`
 var str = λ[#.toString()];
 var sub = λ[# - #];
