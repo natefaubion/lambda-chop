@@ -92,11 +92,17 @@ macro λ {
   rule { -> { $body ... } } => {
     function() { $body ... }
   }
+  rule { => $body:expr; $trailing} => {
+    function() { return $body }.bind(this); $trailing
+  }
   rule { => $body:expr; } => {
     function() { return $body }.bind(this)
   }
   rule { => $body:expr } => {
     function() { return $body }.bind(this)
+  }
+  rule { -> $body:expr; $trailing} => {
+    function() { return $body }; $trailing
   }
   rule { -> $body:expr; } => {
     function() { return $body }
