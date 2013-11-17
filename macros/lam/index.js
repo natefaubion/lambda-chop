@@ -92,8 +92,14 @@ macro lam {
   rule { -> { $body ... } } => {
     function() { $body ... }
   }
+  rule { => $body:expr; } => {
+    function() { return $body }.bind(this)
+  }
   rule { => $body:expr } => {
     function() { return $body }.bind(this)
+  }
+  rule { -> $body:expr; } => {
+    function() { return $body }
   }
   rule { -> $body:expr } => {
     function() { return $body }

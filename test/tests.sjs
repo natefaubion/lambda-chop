@@ -16,10 +16,13 @@ describe 'Lambdas' {
   it 'should allow one argument without parens' {
     var a = λ x -> x;
     var b = (λ -> λ x => this.foo + 1).call(ctx);
+    var c = (λ -> λ x => this.foo + 1;).call(ctx);
 
     test 'unbound' { a(1) === 1 }
     test 'bound'   { b(1) === 43 }
+    test 'bound with ;'   { c(1) === 43 }
   }
+
 
   it 'should curry multiple arguments' {
     var a = λ x y -> x + y;
