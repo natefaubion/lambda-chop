@@ -38,8 +38,8 @@ describe 'Lambdas' {
   }
 
   it 'should allow multiple arg lists' {
-    var a = λ(s, t)(x, y) -> s * t - x * y
-    var b = (λ -> λ(s, t)(x, y) => this.foo - s * t - x* y).call(ctx)
+    var a = λ(s, t)(x, y) -> s * t - x * y;
+    var b = (λ -> λ(s, t)(x, y) => this.foo - s * t - x* y).call(ctx);
 
     test 'unbound' { a(3, 5)(2, 4) === 7 }
     test 'bound'   { b(3, 5)(2, 4) === 19 }
@@ -52,8 +52,8 @@ describe 'Lambdas' {
   }
 
   it 'should not auto return when using a block' {
-    var a = λ -> { 12 }
-    var b = λ -> { return 12 }
+    var a = λ -> { 12 };
+    var b = λ -> { return 12 };
 
     test 'no return' { a() === void 0 }
     test 'return'    { b() === 12 }

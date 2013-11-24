@@ -28,7 +28,10 @@ module.exports = function(grunt) {
     var test  = isTest ? grunt.file.read('./test/macros.sjs') : '';
     var file  = grunt.file.read(fileName);
     var sweet = require('sweet.js');
-    return sweet.compile([macro, test, file].join('\n'));
+
+    return sweet.compile(test + file, {
+      macros: macro
+    }).code;
   }
 
   grunt.registerTask('default', ['build']);

@@ -1,9 +1,19 @@
+macro $lc__error {
+  case { _ $tok } => {
+    throwSyntaxError('lambda-chop', 'Unexpected token', #{ $tok });
+  }
+}
+
 macro $lc__curry {
   case { _ ( $args ... ) ( $symbol ... ) ( $body ... ) } => {
     var here = #{ here };
     var args = #{ $args ... };
     var symbol = #{ $symbol ... };
     var body = #{ $body ... };
+
+    if (!args.length) {
+      args.push(makeDelim('()', []));
+    }
 
     return args.reduceRight(function(bod, alist, i) {
       var func = makeKeyword('function');
@@ -55,12 +65,12 @@ macro $lc__placeholders {
   }
 }
 
-macro $lc__more {
+macro $lc__args {
   rule { ( $prev ... ) $name:ident } => {
-    $lc__more ( $prev ... ( $name ) )
+    $lc__args ( $prev ... ( $name ) )
   }
   rule { ( $prev ... ) ( $name:ident (,) ... ) } => {
-    $lc__more ( $prev ... ( $name (,) ... ) )
+    $lc__args ( $prev ... ( $name (,) ... ) )
   }
   rule { ( $prev ... ) => { $body ... } } => {
     $lc__curry ( $prev ... ) ( => ) ( $body ... )
@@ -74,28 +84,18 @@ macro $lc__more {
   rule { ( $prev ... ) -> $body:expr } => {
     $lc__curry ( $prev ... ) ( -> ) ( return $body )
   }
+  rule { $tok } => {
+    $lc__error $tok
+  }
 }
 
 macro MACRO_NAME {
   rule { [ $body ... ] } => {
     $lc__placeholders ( $body ... )
   }
-  rule { $name:ident } => {
-    $lc__more ( ( $name ) )
-  }
-  rule { ( $name:ident (,) ... ) } => {
-    $lc__more ( ( $name (,) ... ) )
-  }
-  rule { => { $body ... } } => {
-    function() { $body ... }.bind(this)
-  }
-  rule { -> { $body ... } } => {
-    function() { $body ... }
-  }
-  rule { => $body:expr } => {
-    function() { return $body }.bind(this)
-  }
-  rule { -> $body:expr } => {
-    function() { return $body }
+  rule {} => {
+    $lc__args ()
   }
 }
+
+export MACRO_NAME;
