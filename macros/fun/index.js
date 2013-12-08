@@ -20,7 +20,7 @@ macro $lc__curry {
       var ret  = i > 0 ? [makeKeyword('return', func)] : [];
       var code = ret.concat(func, alist, makeDelim('{}', bod));
 
-      return symbol[0].token.value === '='
+      return symbol[0].token.value === '=>'
         ? code.concat(
             makePunc('.'), 
             makeIdent('bind'), 
