@@ -11,6 +11,7 @@ module.exports = function(grunt) {
     var macro = grunt.file.read('./src/macro.js');
     var regex = /MACRO_NAME/gm;
     grunt.file.write('./macros/index.js', macro.replace(regex, 'λ'));
+    grunt.file.write('./macros/fn/index.js', macro.replace(regex, 'fn'));
     grunt.file.write('./macros/fun/index.js', macro.replace(regex, 'fun'));
     grunt.file.write('./macros/lam/index.js', macro.replace(regex, 'lam'));
   });
