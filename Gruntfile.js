@@ -24,6 +24,12 @@ module.exports = function(grunt) {
     });
   });
 
+  grunt.registerTask('alias', function(name, file) {
+    var macro = grunt.file.read('./src/macro.js');
+    var regex = /MACRO_NAME/gm;
+    grunt.file.write(file, macro.replace(regex, name));
+  });
+
   grunt.registerTask('build-test', function() {
     grunt.file.write('./test/tests.js', compileFile('./test/tests.sjs', true));
   });
