@@ -59,8 +59,12 @@ by using a different module to compile your files.
     # Use `fun` instead of `λ`
     sjs -m lambda-chop/macros/fun myfile.js
 
-    # Use `lam` instead of `λ`
-    sjs -m lambda-chop/macros/lam myfile.js
+
+Available aliases are:
+- `fn`
+- `fun`
+- `func`
+- `lam`
 
 ***
 
