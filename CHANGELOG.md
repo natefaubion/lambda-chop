@@ -1,3 +1,7 @@
+## 0.1.3 (2012-12-15)
+
+*   Added `fn` and `func` aliases.
+
 ## 0.1.2 (2012-12-9)
 
 *   Update for sweet.js 0.3.x
