@@ -1,6 +1,6 @@
 {
   "name": "lambda-chop",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Sweet.js macros for lambdas with currying, bound functions, and placeholders.",
   "repository": {
     "type": "git",
@@ -14,14 +14,15 @@
     "partial",
     "partials",
     "macro",
-    "macros"
+    "macros",
+    "sweet-macros"
   ],
   "author": "Nathan Faubion <nathan@n-son.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "sweet.js": "~0.3.0",
+    "sweet.js": "~0.4.0",
     "chai": "~1.8.1",
     "grunt-mocha-test": "~0.7.0"
   }

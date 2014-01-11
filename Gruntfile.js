@@ -38,14 +38,18 @@ module.exports = function(grunt) {
     console.log(compileFile(fileName));
   });
 
+  var moduleCtx;
+
   function compileFile(fileName, isTest) {
     var macro = grunt.file.read('./macros/index.js');
     var test  = isTest ? grunt.file.read('./test/macros.sjs') : '';
     var file  = grunt.file.read(fileName);
     var sweet = require('sweet.js');
 
+    if (!moduleCtx) moduleCtx = sweet.loadModule(macro);
+
     return sweet.compile(test + file, {
-      macros: macro
+      modules:[moduleCtx]
     }).code;
   }
 
