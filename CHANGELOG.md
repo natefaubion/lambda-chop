@@ -1,3 +1,7 @@
+## 0.1.5 (2014-5-3)
+
+*   Shorthand property lambdas
+
 ## 0.1.4 (2014-1-11)
 
 *   Update for sweet.js 0.4.x
