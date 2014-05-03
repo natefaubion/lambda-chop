@@ -21,6 +21,7 @@ lambdas, much like CoffeeScipt and ES6, but with some extra features:
 *   Tupled arguments
 *   Curried arguments
 *   Partials with placeholders
+*   Shorthand property lambdas
 
 Examples
 --------
@@ -46,6 +47,9 @@ var nonsense = λ(x, y)(s, t) f -> 42;
 var str = λ[#.toString()];
 var sub = λ[# - #];
 sub(2, 1) === 1;
+
+// Shorthand property lambdas
+var names = arr.map(λ.name);
 ```
 
 Placeholder partials are never curried or bound, and are always expressions.

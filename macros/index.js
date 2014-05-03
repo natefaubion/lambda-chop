@@ -89,9 +89,18 @@ macro $lc__args {
   }
 }
 
+macro $lc__dotexpr {
+  rule { ($body ...) } => {
+    function(a) { return a.$body ... }
+  }
+}
+
 macro λ {
   rule { [ $body ... ] } => {
     $lc__placeholders ( $body ... )
+  }
+  rule { . $body:expr } => {
+    $lc__dotexpr $body
   }
   rule {} => {
     $lc__args ()

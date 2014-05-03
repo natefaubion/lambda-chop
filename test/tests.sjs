@@ -58,4 +58,10 @@ describe 'Lambdas' {
     test 'no return' { a() === void 0 }
     test 'return'    { b() === 12 }
   }
+
+  it 'should allow shorthand property expressions' {
+    var l = [{ foo: 1 }, { foo: 2 }, { foo: 3 }];
+
+    test 'success' { l.map(λ.foo) =>= [1, 2, 3] }
+  }
 }
